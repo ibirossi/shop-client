@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Menu } from "antd";
 import { HomeOutlined, UserOutlined, UserAddOutlined } from "@ant-design/icons";
 
 const { SubMenu, Item } = Menu;
-
 
 const Header = () => {
   const [current, setCurrent] = useState("home");
@@ -20,19 +19,17 @@ const Header = () => {
       className="custom-class"
     >
       <Item key="home" icon={<HomeOutlined />}>
-        <Link exact to="/">Home</Link>
+        <NavLink exact to="/">
+          Home
+        </NavLink>
       </Item>
 
-      <Item
-        key="signup"
-        icon={<UserAddOutlined />}
-        className="float-right"
-      >
-        <Link to="/signup">Sign Up</Link>
+      <Item key="signup" icon={<UserAddOutlined />} className="float-right">
+        <NavLink to="/signup">Sign Up</NavLink>
       </Item>
 
       <Item key="login" icon={<UserOutlined />} className="float-right">
-        <Link to="/login">Log In</Link>
+        <NavLink to="/login">Log In</NavLink>
       </Item>
 
       <SubMenu title="Username">
