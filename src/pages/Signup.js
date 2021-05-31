@@ -12,7 +12,7 @@ const Signup = () => {
     //create config object
     const config = {
       //url to be redirected to
-      url: "http://localhost:3000/register/complete",
+      url: ProcessingInstruction.env.REACT_APP_REDIRECT_URL_SIGNUP,
       //sets whether email action link opens in mobile app or weblink first.
       //set to true = action code link sent as universal link or android app link.
       handleCodeInApp: true,
