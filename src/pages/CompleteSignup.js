@@ -8,31 +8,37 @@ const CompleteSignup = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  //acquire email from local storage on mount. 
+  //acquire email from local storage on mount.
   useEffect(() => {
-    setEmail(window.localStorage.getItem('userSignInEmail'))
-  }, [])
+    setEmail(window.localStorage.getItem("userSignInEmail"));
+  }, []);
 
-  //send request to firebase to send email to user email address
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    try {
+      const result = await auth.signInWithEmailLink(
+        email,
+        window.location.href
+      );
+      
+    } catch (error) {
+      
+    }
   };
 
+  //this is throwing an error
+  /*provided a `value` prop to a form field without an `onChange` handler. This will render a read-only 
+  field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange`or`readOnly`*/
   const completeSignupForm = () => (
     <form onSubmit={handleSubmit}>
-      <input
-        type="email"
-        value={password}
-        className="form-control"
-      />
+      <input type="email" value={email} className="form-control" />
       <input
         type="password"
-        value={email}
+        value={password}
         className="form-control"
         onChange={(e) => setPassword(e.target.value)}
         autoFocus
-        placeholder="Enter Password"
+        placeholder="Enter a valid password"
       />
       <button type="submit" className="btn btn-raised">
         Complete Signup
@@ -53,4 +59,3 @@ const CompleteSignup = ({ history }) => {
 };
 
 export default CompleteSignup;
-
