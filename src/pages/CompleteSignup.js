@@ -26,12 +26,13 @@ const CompleteSignup = ({ history }) => {
     }
   };
 
-  //this is throwing an error
+  //this was throwing an error
   /*provided a `value` prop to a form field without an `onChange` handler. This will render a read-only 
   field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange`or`readOnly`*/
+  //fixed by adding "disabled" to email input
   const completeSignupForm = () => (
     <form onSubmit={handleSubmit}>
-      <input type="email" value={email} className="form-control" />
+      <input type="email" value={email} className="form-control" disabled/>
       <input
         type="password"
         value={password}
