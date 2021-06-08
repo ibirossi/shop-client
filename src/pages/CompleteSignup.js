@@ -18,11 +18,28 @@ const CompleteSignup = ({ history }) => {
     try {
       const result = await auth.signInWithEmailLink(
         email,
+        //gets url of page (in this case will be url + api key)
         window.location.href
       );
-      
+      //console.log("RESULT", result) - returns object with user details.
+      //check if email has been verified
+      //update user with entered password
+      if(result.user.emailVerified){
+        //remove email from local storage
+        window.localStorage.removeItem("userSignInEmail");
+        //get user id token gives currently logged in user
+        let user = auth.currentUser
+        await user.updatePassword(password);
+        const idTokenResult = await user.getIdTokenResult();
+        //populate user in Redux store to access secure routes in backend
+        console.log("User", user, "idToken", idTokenResult)
+        //redirect to hompage
+        //history.push('/')
+
+      }
     } catch (error) {
-      
+      console.log(error)
+      toast.error(error.message)
     }
   };
 
