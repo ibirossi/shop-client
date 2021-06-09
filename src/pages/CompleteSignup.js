@@ -21,9 +21,9 @@ const CompleteSignup = ({ history }) => {
         //gets url of page (in this case will be url + api key)
         window.location.href
       );
-      //console.log("RESULT", result) - returns object with user details.
-      //check if email has been verified
-      //update user with entered password
+      // console.log("RESULT", result) - returns object with user details.
+      // check if email has been verified
+      // update user with entered password
       if(result.user.emailVerified){
         //remove email from local storage
         window.localStorage.removeItem("userSignInEmail");
@@ -34,7 +34,7 @@ const CompleteSignup = ({ history }) => {
         //populate user in Redux store to access secure routes in backend
         console.log("User", user, "idToken", idTokenResult)
         //redirect to hompage
-        //history.push('/')
+        history.push('/')
 
       }
     } catch (error) {
