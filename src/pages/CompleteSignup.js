@@ -15,6 +15,17 @@ const CompleteSignup = ({ history }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    //validation
+    if(!email || !password) {
+      toast.error('Email and password required')
+      return;
+    }
+
+    if(password.length < 8) {
+      toast.error('Password must be at least 8 characters long')
+      return;
+    }
+
     try {
       const result = await auth.signInWithEmailLink(
         email,
